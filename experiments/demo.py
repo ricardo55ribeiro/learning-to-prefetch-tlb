@@ -1,6 +1,6 @@
 """Compare two runs of the same short trace."""
 
-from simulator import Access, simulate
+from tlb_prefetch.simulator import Access, simulate
 
 
 def main() -> None:

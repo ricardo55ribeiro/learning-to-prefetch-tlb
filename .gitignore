@@ -1,3 +1,5 @@
+tests/
 __pycache__/
 *.py[cod]
+.venv/
 /learning-to-prefetch-tlb.zip

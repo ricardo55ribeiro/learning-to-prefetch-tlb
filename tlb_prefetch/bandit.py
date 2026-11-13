@@ -2,8 +2,8 @@
 
 from random import Random
 
-from predictors import MarkovPrefetcher, NextPagePrefetcher, PerPCStridePrefetcher
-from simulator import Access, PrefetchFeedback, _validate_integer
+from tlb_prefetch.predictors import MarkovPrefetcher, NextPagePrefetcher, PerPCStridePrefetcher
+from tlb_prefetch.simulator import Access, PrefetchFeedback, _validate_integer
 
 
 WASTED_WALK_PENALTY = 5

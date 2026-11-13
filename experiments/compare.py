@@ -4,15 +4,17 @@ from argparse import ArgumentParser
 from collections.abc import Iterator
 from csv import DictWriter
 from dataclasses import dataclass
+from pathlib import Path
 from random import Random
 
-from bandit import POLICY_SEED, WASTED_WALK_PENALTY, RewardSelector
-from predictors import (
+from tlb_prefetch.bandit import POLICY_SEED, WASTED_WALK_PENALTY, RewardSelector
+from tlb_prefetch.predictors import (
     AdaptivePrefetcher, MarkovPrefetcher, NextPagePrefetcher, PerPCStridePrefetcher,
 )
-from simulator import Access, SimulationStats, SimulatorConfig, simulate
+from tlb_prefetch.simulator import Access, SimulationStats, SimulatorConfig, simulate
 
 
+DATA_DIR = Path(__file__).resolve().parents[1] / "results" / "data"
 RANDOM_SEED = 42
 LONG_SEEDS = (11, 29, 47)
 HELD_OUT_SEEDS = tuple(range(101, 111))
@@ -232,7 +234,10 @@ def print_summary(
 def main() -> None:
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("--sensitivity", action="store_true", help="Show hypothetical walk penalties")
-    parser.add_argument("--csv", metavar="PATH", help="Write per-trace metrics, including all costs")
+    parser.add_argument(
+        "--csv", type=Path, metavar="PATH",
+        help="Write per-trace metrics to PATH, relative to results/data or absolute",
+    )
     args = parser.parse_args()
 
     rows = []
@@ -259,7 +264,9 @@ def main() -> None:
         print(f"{group:<22}{cost:>8}")
 
     if args.csv:
-        with open(args.csv, "w", encoding="utf-8", newline="") as output:
+        path = DATA_DIR / args.csv
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("w", encoding="utf-8", newline="") as output:
             csv = DictWriter(output, CSV_COLUMNS)
             csv.writeheader()
             csv.writerows(rows)

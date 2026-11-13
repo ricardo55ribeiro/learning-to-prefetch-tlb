@@ -16,7 +16,7 @@ That last point matters: I wasn't just trying to maximize correct guesses. I wan
 
 ## What I tested
 
-I put together a small, deterministic, trace-driven Python simulator. It replays sequences of virtual-page accesses and models a limited-capacity TLB, a separate prefetch buffer, page-walk latency and pending prefetch requests. All policies see the same traces.
+I put together a small, deterministic, trace-driven Python simulator. It replays sequences of virtual-page accesses and models a limited-capacity TLB, a separate prefetch buffer, page-walk latency and pending prefetch requests. All policies see the same traces. The simulator and predictors are in [`tlb_prefetch/`](tlb_prefetch/) and the reproduction scripts are in [`experiments/`](experiments/).
 
 I compared seven policies:
 
@@ -55,7 +55,7 @@ The five-cycle charge is a **hypothetical penalty**, not a measured hardware cos
 
 I built a separate diagnostic with five synthetic traces. Each trace repeatedly alternates sequential scans, regular strides, a shuffled repeating loop and random accesses. Different predictors have opportunities to be useful in different parts of the same trace.
 
-![Adjusted simulated cost for seven policies on five mixed-phase traces. Blue is demand waiting time and orange is the hypothetical extra-walk charge.](mixed_phase.png)
+![Adjusted simulated cost for seven policies on five mixed-phase traces. Blue is demand waiting time and orange is the hypothetical extra-walk charge.](results/figures/mixed_phase.png)
 
 Across those five traces, the **noncontextual reward selector** had the lowest adjusted cost: **108,560**, compared with **120,075** for the best fixed predictor across the combined results. That is about **9.6% lower adjusted simulated cost**. Both reward-based selectors beat every fixed predictor on each of the five traces.
 
@@ -74,7 +74,7 @@ These are totals at the same hypothetical five-cycle penalty. The learned select
 
 Because the learning algorithms explore randomly, I also repeated the *same* twenty held-out traces with **100 different policy random seeds**. The contextual model beat the noncontextual model on just **2/100** aggregate Streams comparisons and **31/100** aggregate Loops comparisons.
 
-![Distribution of contextual-minus-noncontextual adjusted cost over 100 policy random seeds. Positive values mean the contextual model did worse.](seed_sensitivity.png)
+![Distribution of contextual-minus-noncontextual adjusted cost over 100 policy random seeds. Positive values mean the contextual model did worse.](results/figures/seed_sensitivity.png)
 
 This sweep tests sensitivity to exploration randomness. It is **not** 100 new sets of applications or workloads.
 
@@ -91,21 +91,20 @@ The outcome is more interesting to me than a simple win or loss:
 
 ## Reproduce it
 
-Use **Python 3.11+**. The simulator and experiments require only the standard library.
+Use **Python 3.11+** from the repository root. The simulator and experiments require only the standard library.
 
 ```bat
-python -m unittest discover -s tests -v
-python demo.py
-python compare.py --sensitivity --csv results.csv
-python finalize.py
+python -m experiments.demo
+python -m experiments.compare --sensitivity --csv results.csv
+python -m experiments.finalize
 ```
 
-The repository includes the raw results: [`results.csv`](results.csv), [`seed_sweep.csv`](seed_sweep.csv) and [`mixed_phase.csv`](mixed_phase.csv). The complete test suite contains **63 tests**.
+The demo compares scripted prefetching with no prefetching on a short trace. The comparison writes [`results.csv`](results/data/results.csv), and the finalization command reproduces the 100-seed sweep in [`seed_sweep.csv`](results/data/seed_sweep.csv) and the mixed-phase diagnostic in [`mixed_phase.csv`](results/data/mixed_phase.csv).
 
-The two plots are included as PNG files. To regenerate them, install Matplotlib and run:
+The two plots use the saved CSVs. To regenerate the PNGs in [`results/figures/`](results/figures/), use an environment with Matplotlib and run the following command.
 
 ```bat
-python plot_results.py
+python -m experiments.plot_results
 ```
 
 ## Important limitations

@@ -2,7 +2,7 @@
 
 from collections import OrderedDict, deque
 
-from simulator import Access, PrefetchFeedback, _validate_integer
+from tlb_prefetch.simulator import Access, PrefetchFeedback, _validate_integer
 
 
 class NextPagePrefetcher:

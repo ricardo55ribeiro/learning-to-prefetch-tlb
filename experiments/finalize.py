@@ -2,14 +2,15 @@
 
 from collections.abc import Iterable, Iterator
 from csv import DictWriter
+from pathlib import Path
 from random import Random
 from statistics import mean, pstdev
 
-from compare import (
-    COMPARISON_CONFIG, CSV_COLUMNS, HELD_OUT_SEEDS, LONG_GAPS, best_fixed_at_five,
+from experiments.compare import (
+    COMPARISON_CONFIG, CSV_COLUMNS, DATA_DIR, HELD_OUT_SEEDS, LONG_GAPS, best_fixed_at_five,
     compare, csv_row, make_irregular_region, make_long_workloads, run_reward_selector,
 )
-from simulator import Access
+from tlb_prefetch.simulator import Access
 
 
 POLICY_SEEDS = range(100)
@@ -116,9 +117,10 @@ def print_diagnostic(rows: list[dict[str, str | int | None]]) -> None:
 
 
 def write_csv(
-    path: str, fields: tuple[str, ...], rows: Iterable[dict[str, str | int | None]],
+    path: Path, fields: tuple[str, ...], rows: Iterable[dict[str, str | int | None]],
 ) -> None:
-    with open(path, "w", encoding="utf-8", newline="") as output:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="") as output:
         csv = DictWriter(output, fields)
         csv.writeheader()
         csv.writerows(rows)
@@ -127,8 +129,8 @@ def write_csv(
 def main() -> None:
     sweep_rows = list(sweep())
     diagnostic_rows = list(diagnostic())
-    write_csv("seed_sweep.csv", SWEEP_FIELDS, sweep_rows)
-    write_csv("mixed_phase.csv", CSV_COLUMNS, diagnostic_rows)
+    write_csv(DATA_DIR / "seed_sweep.csv", SWEEP_FIELDS, sweep_rows)
+    write_csv(DATA_DIR / "mixed_phase.csv", CSV_COLUMNS, diagnostic_rows)
     print_sweep(sweep_rows)
     print_diagnostic(diagnostic_rows)
 
