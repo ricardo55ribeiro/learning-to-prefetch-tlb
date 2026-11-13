@@ -1,0 +1,36 @@
+split,workload,workload_seed,policy,policy_seed,demand_accesses,demand_wait_cycles,elapsed_cycles,demand_walks,prefetch_walks,total_walks,additional_walks,timely_prefetches,late_prefetches,wasted_prefetches,rejected_requests,metadata_retained,metadata_bound,candidate_calls_per_demand,selector_value_checks_per_demand_bound,cost_at_0,cost_at_5,cost_at_20,best_fixed_at_5,best_fixed_cost_at_5
+Diagnostic,Mixed phase,201,No prefetch,,648,37500,63320,625,0,625,0,0,0,0,0,0,0,0,0,37500,37500,37500,Per-PC stride,23270
+Diagnostic,Mixed phase,201,Next page,,648,25620,51440,356,527,883,258,169,100,258,121,0,0,1,0,25620,26910,30780,Per-PC stride,23270
+Diagnostic,Mixed phase,201,Per-PC stride,,648,23205,49025,356,282,638,13,203,66,13,0,3,16,1,0,23205,23270,23465,Per-PC stride,23270
+Diagnostic,Mixed phase,201,Markov,,648,32380,58200,480,152,632,7,59,86,7,23,75,161,1,0,32380,32415,32520,Per-PC stride,23270
+Diagnostic,Mixed phase,201,Adaptive,,648,24375,50195,341,385,726,101,185,99,101,90,84,285,3,96,24375,24880,26395,Per-PC stride,23270
+Diagnostic,Mixed phase,201,Reward,0,648,21080,46900,316,415,731,106,240,69,106,99,82,193,3,4,21080,21610,23200,Per-PC stride,23270
+Diagnostic,Mixed phase,201,Contextual,0,648,22270,48090,316,390,706,81,210,99,81,56,111,222,3,4,22270,22675,23890,Per-PC stride,23270
+Diagnostic,Mixed phase,202,No prefetch,,648,37560,64470,626,0,626,0,0,0,0,0,0,0,0,0,37560,37560,37560,Per-PC stride,24110
+Diagnostic,Mixed phase,202,Next page,,648,26645,53555,381,497,878,252,150,95,252,151,0,0,1,0,26645,27905,31685,Per-PC stride,24110
+Diagnostic,Mixed phase,202,Per-PC stride,,648,24050,50960,371,267,638,12,187,68,12,6,3,16,1,0,24050,24110,24290,Per-PC stride,24110
+Diagnostic,Mixed phase,202,Markov,,648,31780,58690,481,153,634,8,74,71,8,21,73,161,1,0,31780,31820,31940,Per-PC stride,24110
+Diagnostic,Mixed phase,202,Adaptive,,648,23790,50700,353,366,719,93,200,73,93,108,84,285,3,96,23790,24255,25650,Per-PC stride,24110
+Diagnostic,Mixed phase,202,Reward,0,648,21560,48470,322,397,719,93,241,63,93,131,80,193,3,4,21560,22025,23420,Per-PC stride,24110
+Diagnostic,Mixed phase,202,Contextual,0,648,21730,48640,318,398,716,90,234,74,90,78,109,222,3,4,21730,22180,23530,Per-PC stride,24110
+Diagnostic,Mixed phase,203,No prefetch,,648,37800,62890,630,0,630,0,0,0,0,0,0,0,0,0,37800,37800,37800,Per-PC stride,24510
+Diagnostic,Mixed phase,203,Next page,,648,26335,51425,359,533,892,262,168,103,262,115,0,0,1,0,26335,27645,31575,Per-PC stride,24510
+Diagnostic,Mixed phase,203,Per-PC stride,,648,24445,49535,375,268,643,13,185,70,13,0,3,16,1,0,24445,24510,24705,Per-PC stride,24510
+Diagnostic,Mixed phase,203,Markov,,648,32245,57335,486,148,634,4,69,75,4,19,69,161,1,0,32245,32265,32325,Per-PC stride,24510
+Diagnostic,Mixed phase,203,Adaptive,,648,24065,49155,330,383,713,83,191,109,83,55,80,285,3,96,24065,24480,25725,Per-PC stride,24510
+Diagnostic,Mixed phase,203,Reward,0,648,21205,46295,298,410,708,78,245,87,78,81,76,193,3,4,21205,21595,22765,Per-PC stride,24510
+Diagnostic,Mixed phase,203,Contextual,0,648,21515,46605,294,438,732,102,232,104,102,51,105,222,3,4,21515,22025,23555,Per-PC stride,24510
+Diagnostic,Mixed phase,204,No prefetch,,648,37980,67455,633,0,633,0,0,0,0,0,0,0,0,0,37980,37980,37980,Per-PC stride,23900
+Diagnostic,Mixed phase,204,Next page,,648,26490,55965,389,498,887,254,171,73,254,150,0,0,1,0,26490,27760,31570,Per-PC stride,23900
+Diagnostic,Mixed phase,204,Per-PC stride,,648,23840,53315,378,267,645,12,207,48,12,0,3,16,1,0,23840,23900,24080,Per-PC stride,23900
+Diagnostic,Mixed phase,204,Markov,,648,32180,61655,486,153,639,6,74,73,6,16,72,161,1,0,32180,32210,32300,Per-PC stride,23900
+Diagnostic,Mixed phase,204,Adaptive,,648,24515,53990,338,382,720,87,189,106,87,55,79,285,3,96,24515,24950,26255,Per-PC stride,23900
+Diagnostic,Mixed phase,204,Reward,0,648,20805,50280,312,417,729,96,256,65,96,102,79,193,3,4,20805,21285,22725,Per-PC stride,23900
+Diagnostic,Mixed phase,204,Contextual,0,648,21610,51085,306,429,735,102,238,89,102,45,108,222,3,4,21610,22120,23650,Per-PC stride,23900
+Diagnostic,Mixed phase,205,No prefetch,,648,37860,63770,631,0,631,0,0,0,0,0,0,0,0,0,37860,37860,37860,Per-PC stride,24285
+Diagnostic,Mixed phase,205,Next page,,648,27365,53275,393,500,893,262,147,91,262,148,0,0,1,0,27365,28675,32605,Per-PC stride,24285
+Diagnostic,Mixed phase,205,Per-PC stride,,648,24225,50135,376,267,643,12,196,59,12,0,3,16,1,0,24225,24285,24465,Per-PC stride,24285
+Diagnostic,Mixed phase,205,Markov,,648,32590,58500,484,155,639,8,62,85,8,20,75,161,1,0,32590,32630,32750,Per-PC stride,24285
+Diagnostic,Mixed phase,205,Adaptive,,648,25285,51195,369,351,720,89,180,82,89,81,85,285,3,96,25285,25730,27065,Per-PC stride,24285
+Diagnostic,Mixed phase,205,Reward,0,648,21715,47625,317,380,697,66,240,74,66,108,82,193,3,4,21715,22045,23035,Per-PC stride,24285
+Diagnostic,Mixed phase,205,Contextual,0,648,22630,48540,332,371,703,72,225,74,72,82,111,222,3,4,22630,22990,24070,Per-PC stride,24285
